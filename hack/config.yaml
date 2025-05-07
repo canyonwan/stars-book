@@ -1,0 +1,19 @@
+# CLI tool, only in development environment.
+# https://goframe.org/docs/cli
+gfcli:
+  gen:
+    dao:
+#      - link: "mysql:root:107829@tcp(127.0.0.1:3306)/canyonwan_db?loc=Local"
+      - link: "mysql:root:107829@tcp(127.0.0.1:3306)/canyonwan_db"
+        descriptionTag: true
+    enums:
+      src: "api"
+      path: "internal/boot/boot_enums.go"
+      prefixes:
+        - github.com/gogf
+        - myexample/project
+
+  docker:
+    build: "-a amd64 -s linux -p temp -ew"
+    tagPrefixes:
+      - my.image.pub/my-app
