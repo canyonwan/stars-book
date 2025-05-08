@@ -11,8 +11,6 @@ import (
 )
 
 type IUsersV1 interface {
-	Register(ctx context.Context, req *v1.RegisterReq) (res *v1.RegisterRes, err error)
-	Login(ctx context.Context, req *v1.LoginReq) (res *v1.LoginRes, err error)
 	UserInfo(ctx context.Context, req *v1.UserInfoReq) (res *v1.UserInfoRes, err error)
 	UserList(ctx context.Context, req *v1.UserListReq) (res *v1.UserListRes, err error)
 	DeleteUser(ctx context.Context, req *v1.DeleteUserReq) (res *v1.DeleteUserRes, err error)

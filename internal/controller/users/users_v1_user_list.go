@@ -4,8 +4,7 @@ import (
 	"context"
 
 	v1 "gf-playground-1/api/users/v1"
-	"gf-playground-1/utility/response"
-
+	"gf-playground-1/internal/logic/middleware"
 	"github.com/gogf/gf/v2/net/ghttp"
 )
 
@@ -17,9 +16,9 @@ func (c *ControllerV1) UserList(ctx context.Context, req *v1.UserListReq) (res *
 
 	list, err := c.users.UserList(ctx, req)
 	if err != nil {
-		response.Fail(r, err)
+		middleware.ResponseFail(r, err)
 		return
 	}
-	response.Success(r, list)
+	middleware.ResponseSuccess(r, list)
 	return
 }

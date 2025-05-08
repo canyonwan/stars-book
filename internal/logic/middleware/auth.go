@@ -18,11 +18,13 @@ func Auth(r *ghttp.Request) {
 	if err != nil || !token.Valid {
 		r.Response.WriteJson(g.Map{
 			"code":    http.StatusUnauthorized,
-			"message": "登录失效,请重新登录",
+			"message": "token失效,请重新登录",
 			"data":    nil,
 		})
 		r.Exit()
 		return
 	}
+	claims, _ := token.Claims.(jwt.MapClaims)
+	r.SetCtxVar("userId", claims["UserId"])
 	r.Middleware.Next()
 }

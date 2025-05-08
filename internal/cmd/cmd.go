@@ -2,7 +2,10 @@ package cmd
 
 import (
 	"context"
+
+	"gf-playground-1/internal/controller/account"
 	"gf-playground-1/internal/controller/users"
+	"gf-playground-1/internal/controller/words"
 	"gf-playground-1/internal/logic/middleware"
 
 	_ "github.com/gogf/gf/contrib/drivers/mysql/v2"
@@ -22,15 +25,13 @@ var (
 				group.Middleware(ghttp.MiddlewareHandlerResponse)
 				group.Group("/v1", func(group *ghttp.RouterGroup) {
 					group.Bind(
-						users.NewV1().Login,
-						users.NewV1().Register,
+						account.NewV1(),
 					)
 					group.Group("/", func(group *ghttp.RouterGroup) {
 						group.Middleware(middleware.Auth)
 						group.Bind(
-							users.NewV1().UserInfo,
-							users.NewV1().DeleteUser,
-							users.NewV1().UserList,
+							users.NewV1(),
+							words.NewV1(),
 						)
 					})
 				})
